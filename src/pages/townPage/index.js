@@ -1,10 +1,10 @@
-import Header from '../../components/header';
+import { useParams } from 'react-router-dom';
 
 const TownPage = () => {
+  const { town } = useParams();
   return (
     <>
-      <Header />
-      <div>Town</div>
+      <div>{town}</div>
     </>
   );
 };
