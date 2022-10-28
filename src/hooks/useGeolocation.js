@@ -1,21 +1,20 @@
-import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { setLocation } from '../store/slices/locationSlice';
-
-const handleError = error => {
-  console.log(error);
-};
+import { useEffect, useState } from 'react';
 
 export const useGeolocation = () => {
-  const dispatch = useDispatch();
+  const [position, setPosition] = useState({ latitude: null, longitude: null });
 
   useEffect(() => {
     const handleSuccess = position => {
       const { latitude, longitude } = position.coords;
-      dispatch(setLocation({ latitude, longitude }));
+      setPosition({ latitude, longitude });
+    };
+    const handleError = error => {
+      console.warn(error);
     };
     if ('geolocation' in navigator) {
       navigator.geolocation.getCurrentPosition(handleSuccess, handleError);
     }
   }, []);
+
+  return { position };
 };

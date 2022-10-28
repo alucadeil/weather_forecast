@@ -1,27 +1,24 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  latitude: null,
-  longitude: null,
-  townName: null
+  defaultCity: 'Minsk',
+  selectedCity: null
 };
 
 const locationSlice = createSlice({
   name: 'location',
   initialState,
   reducers: {
-    setLocation: (state, action) => {
-      const { longitude, latitude } = action.payload;
-      state.latitude = latitude;
-      state.longitude = longitude;
+    setDefaultCity: (state, action) => {
+      state.defaultCity = action.payload;
     },
-    setTown: (state, action) => {
-      const { townName } = action.payload;
-      state.townName = townName;
+    setSelectedCity: (state, action) => {
+      const { city } = action.payload;
+      state.selectedCity = city;
     }
   }
 });
 
-export const { setLocation, setTown } = locationSlice.actions;
+export const { setDefaultCity, setSelectedCity } = locationSlice.actions;
 
 export default locationSlice.reducer;

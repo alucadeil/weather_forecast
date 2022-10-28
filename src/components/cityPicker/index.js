@@ -4,13 +4,13 @@ import City from './city';
 const CityPicker = props => {
   const { cities, onCityClick } = props;
 
-  const handleCityClick = (e, townName) => {
+  const handleCityClick = (e, city) => {
     e.preventDefault();
-    if (onCityClick) onCityClick(townName);
+    if (onCityClick) onCityClick(city);
   };
 
   return (
-    <div className="flex justify-center p-3 gap-5 shadow-md">
+    <div className="flex justify-center p-3 gap-5 shadow-md rounded">
       {cities?.map(city => (
         <City key={city.id} city={city} onClick={handleCityClick} />
       ))}

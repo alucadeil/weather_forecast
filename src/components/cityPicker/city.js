@@ -7,7 +7,7 @@ const City = props => {
   } = props;
 
   return (
-    <button className={'hover:opacity-80 hover:underline'} onClick={e => onClick(e, name)}>
+    <button className={'p-1 bg-gray-100 rounded hover:bg-gray-200'} onClick={e => onClick(e, name)}>
       {name}
     </button>
   );
