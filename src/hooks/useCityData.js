@@ -20,23 +20,30 @@ export const useCityData = () => {
   const {
     data: initData,
     isLoading: isInitDataLoading,
-    isFetching: isInitDataFetching
+    isFetching: isInitDataFetching,
+    isError: isInitError,
+    error: initError
   } = useGetCityDataQuery({ city }, { skip: !city });
   const {
     data: searchData,
     isLoading: isSearchDataLoading,
-    isFetching: isSearchDataFetching
+    isFetching: isSearchDataFetching,
+    isError: isSearchError,
+    error: searchError
   } = useGetCitiesQuery({ city: searchCity }, { skip: !searchCity });
 
   const isInitLoading = isInitDataLoading || isInitDataFetching;
   const isSearchLoading = isSearchDataLoading || isSearchDataFetching;
+  const error = initError || searchError;
+  const isError = isInitError || isSearchError;
 
   return {
     initData,
     searchData,
     isInitLoading,
     isSearchLoading,
-    navigate,
+    isError,
+    error,
     handleSearchButtonClick,
     handleCityClick
   };

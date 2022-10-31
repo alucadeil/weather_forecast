@@ -22,7 +22,7 @@ const MainPage = props => {
         <CityPicker cities={cities} selectedCity={selectedCity} onCityClick={handleCityClick} />
         <Weather city={cityForWeather} />
         <div className={'p-1 rounded hover:bg-gray-100'}>
-          <Link to={`/in/${cityForWeather.name}`}>Learn more</Link>
+          <Link to={`/in/${cityForWeather.name}`}>Details</Link>
         </div>
       </div>
     </div>

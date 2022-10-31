@@ -6,7 +6,14 @@ import Hourly from './hourly';
 
 const Weather = props => {
   const { city, forecastDaysCount = 3, extended = false } = props;
-  const { data, isDataLoading } = useWeatherData(city);
+  const { data, isDataLoading, isError, error } = useWeatherData(city);
+
+  if (data?.isError || isError)
+    return (
+      <div className={'flex flex-col gap-4 items-center'}>
+        <div>{data?.message || error?.data.message}</div>
+      </div>
+    );
 
   return (
     <div

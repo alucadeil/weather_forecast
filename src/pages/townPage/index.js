@@ -9,16 +9,18 @@ const TownPage = () => {
     searchData,
     isInitLoading,
     isSearchLoading,
+    isError,
+    error,
     handleSearchButtonClick,
     handleCityClick
   } = useCityData();
 
   if (isInitLoading) return null;
 
-  if (initData?.isError)
+  if (initData?.isError || isError)
     return (
       <div className={'flex flex-col gap-4 items-center'}>
-        <div>{initData.message}</div>
+        <div>{initData?.message || error?.data?.message}</div>
         <Link className={'p-2 rounded bg-gray-100'} to={'/'}>
           To Main
         </Link>
