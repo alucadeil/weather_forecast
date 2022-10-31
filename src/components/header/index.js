@@ -1,19 +1,17 @@
 import { useSelector } from 'react-redux';
-import { getDefaultCity } from '../../store/selectors/location';
-import { useGeolocation } from '../../hooks/useGeolocation';
+import { getDefaultCity } from '../../store/slices/locationSlice';
 import { useDefaultCity } from '../../hooks/useDefaultCity';
 
 const Header = () => {
-  const { position } = useGeolocation();
-  useDefaultCity(position);
+  useDefaultCity();
 
-  const defaultCity = useSelector(getDefaultCity);
+  const { name } = useSelector(getDefaultCity);
 
   return (
     <header>
       <div className="flex justify-center p-3 gap-5 shadow-md">
         <div>Your location:</div>
-        <div>{defaultCity}</div>
+        <div>{name}</div>
       </div>
     </header>
   );

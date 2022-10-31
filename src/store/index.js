@@ -19,7 +19,7 @@ export const store = configureStore({
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
       serializableCheck: false
-    })
+    }).concat(weatherApi.middleware)
 });
 
 export const persistor = persistStore(store);

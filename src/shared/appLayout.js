@@ -5,7 +5,7 @@ const AppLayout = () => {
   return (
     <div>
       <Header />
-      <div className="flex justify-center p-3 mx-auto w-screen">
+      <div className="flex justify-center p-4 mx-auto w-screen">
         <Outlet />
       </div>
     </div>

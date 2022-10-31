@@ -15,7 +15,7 @@ const router = createBrowserRouter([
         element: <MainPage />
       },
       {
-        path: '/in/:town',
+        path: '/in/:city',
         element: <TownPage />
       }
     ]

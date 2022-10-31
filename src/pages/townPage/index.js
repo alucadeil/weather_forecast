@@ -1,11 +1,40 @@
-import { useParams } from 'react-router-dom';
+import { useCityData } from '../../hooks/useCityData';
+import Weather from '../../components/weatherDashboard';
+import SearchForm from '../../components/searchForm';
+import { Link } from 'react-router-dom';
 
 const TownPage = () => {
-  const { town } = useParams();
+  const {
+    initData,
+    searchData,
+    isInitLoading,
+    isSearchLoading,
+    handleSearchButtonClick,
+    handleCityClick
+  } = useCityData();
+
+  if (isInitLoading) return null;
+
+  if (initData?.isError)
+    return (
+      <div className={'flex flex-col gap-4 items-center'}>
+        <div>{initData.message}</div>
+        <Link className={'p-2 rounded bg-gray-100'} to={'/'}>
+          To Main
+        </Link>
+      </div>
+    );
+
   return (
-    <>
-      <div>{town}</div>
-    </>
+    <div className={'flex flex-col gap-4 items-center'}>
+      <SearchForm
+        searchResult={searchData}
+        isSearching={isSearchLoading}
+        onSubmit={handleSearchButtonClick}
+        onSearchResultClick={handleCityClick}
+      />
+      <Weather city={initData} forecastDaysCount={8} extended />
+    </div>
   );
 };
 
